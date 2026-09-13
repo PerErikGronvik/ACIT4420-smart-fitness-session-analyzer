@@ -25,8 +25,19 @@ def test_participant_invalid_values():
         p.resting_activity_level = 1.5
     except ValueError as e:
         assert str(e) == "Resting activity level must be between 0.0 and 1.0."
+def test_observation():
+    from src.obesrvation import Observation
+    o = Observation(1234567890, 70, 0.5, 36.6, 0.8, 0.9)
+    assert o.timestamp == 1234567890
+    assert o.heart_rate == 70
+    assert o.skin_response == 0.5
+    assert o.temperature == 36.6
+    assert o.activity_level == 0.8
+    assert o.signal_quality == 0.9
 
+    print(o)
 
 if __name__ == "__main__":
     test_participant()
     test_participant_invalid_values()
+    test_observation()
