@@ -22,7 +22,7 @@ def test_participant_invalid_values():
 
     try:
         p = Participant("Ola Normann", 60, 1)
-    p.resting_activity_level = 1.5
+        p.resting_activity_level = 1.5
     except ValueError as e:
         assert str(e) == "Resting activity level must be between 0.0 and 1.0."
 
