@@ -47,4 +47,4 @@ def is_good_signal_quality(signal_quality: float, threshold: float = 0.5) -> boo
     Returns:
         True if signal quality is good (>= threshold), False otherwise.
     """
-    return signal_quality >= threshold
+    return 0.0 <= signal_quality <= 1.0 and signal_quality >= threshold
