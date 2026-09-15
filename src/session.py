@@ -66,4 +66,14 @@ class Session:
             if is_good_signal_quality(observation.signal_quality, quality_threshold)
         ]
 
-    
+    def get_good_quality_observations(self, quality_threshold: float=0.7) -> list:
+        """
+        Get all observations with good signal quality above the specified threshold.
+
+        Args:
+            quality_threshold (float): The minimum signal quality required for an observation to be considered good.
+
+        Returns:
+            list[Observation]: The list of good quality observations.
+        """
+        return [obs for obs in self.observations if is_good_signal_quality(obs.signal_quality, quality_threshold)]

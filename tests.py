@@ -103,7 +103,7 @@ def test_session():
     from src.session import Session
     from src.participant import Participant
 
-    participant = Participant("John Doe", 30, 70, 175)
+    participant = Participant("John Doe", 70, 0.5)
     session = Session(participant)
 
     observation_dict = {
