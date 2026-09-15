@@ -102,6 +102,7 @@ def test_calculations():
 def test_session():
     from src.session import Session
     from src.participant import Participant
+    from src.observation import Observation
 
     participant = Participant("John Doe", 70, 0.5)
     session = Session(participant)
@@ -126,6 +127,16 @@ def test_session():
     assert obs.temperature == 36.6
     assert obs.activity_level == 0.8
     assert obs.signal_quality == 0.9
+    good_quality_observations = session.get_good_quality_observations()
+    assert len(good_quality_observations) == 1
+    good_obs = good_quality_observations[0]
+    assert good_obs.timestamp == 1234567890
+    assert good_obs.heart_rate == 70
+    assert good_obs.skin_response == 0.5
+    assert good_obs.temperature == 36.6
+    assert good_obs.activity_level == 0.8
+    assert good_obs.signal_quality == 0.9
+
 
 if __name__ == "__main__":
     tests = [
