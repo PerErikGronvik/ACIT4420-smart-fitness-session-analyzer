@@ -19,4 +19,5 @@ python3 option_b_podcast/example_usage.py
 The generator files may be treated as instructor-supplied code. Students should
 not modify them unless the assignment explicitly permits modification.
 
-## Install the VS Code Python and Jupyter extensions.
+## Run report
+Install the VS Code Python and Jupyter extensions.
