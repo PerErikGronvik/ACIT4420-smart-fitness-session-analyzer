@@ -99,6 +99,34 @@ def test_calculations():
     ]
     assert detect_recovery(observations, 60) is True
 
+def test_session():
+    from src.session import Session
+    from src.participant import Participant
+
+    participant = Participant("John Doe", 30, 70, 175)
+    session = Session(participant)
+
+    observation_dict = {
+        "timestamp": 1234567890,
+        "heart_rate": 70,
+        "skin_response": 0.5,
+        "temperature": 36.6,
+        "activity_level": 0.8,
+        "signal_quality": 0.9
+    }
+    success, message = session.add_observation(observation_dict)
+    assert success
+    assert message == "Observation added successfully."
+    observations = session.get_observations()
+    assert len(observations) == 1
+    obs = observations[0]
+    assert obs.timestamp == 1234567890
+    assert obs.heart_rate == 70
+    assert obs.skin_response == 0.5
+    assert obs.temperature == 36.6
+    assert obs.activity_level == 0.8
+    assert obs.signal_quality == 0.9
+
 if __name__ == "__main__":
     tests = [
         test_participant,
@@ -106,6 +134,7 @@ if __name__ == "__main__":
         test_observation,
         test_validation,
         test_calculations,
+        test_session,
     ]
 
     passed = 0
