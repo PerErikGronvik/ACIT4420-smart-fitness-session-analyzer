@@ -89,7 +89,32 @@ class Session:
             dict: A dictionary containing the session summary.
         """
         good_quality_observations = self.get_good_quality_observations(quality_threshold)
+
+        if not good_quality_observations:
+            return {
+                "total_observations": len(self.observations),
+                "good_quality_observations": 0,
+                "average_heart_rate": 0,
+                "min_heart_rate": 0,
+                "max_heart_rate": 0,
+                "average_skin_response": 0,
+                "average_activity_level": 0,
+                "average_temperature": 0
+            }
+        heart_rates = [obs.heart_rate for obs in good_quality_observations]
+        activity_levels = [obs.activity_level for obs in good_quality_observations]
+        temperatures = [obs.temperature for obs in good_quality_observations]
+
         return {
             "total_observations": len(self.observations),
             "good_quality_observations": len(good_quality_observations),
+            "average_heart_rate": sum(heart_rates) / len(heart_rates),
+            "min_heart_rate": min(heart_rates),
+            "max_heart_rate": max(heart_rates),
+            "average_skin_response": sum(obs.skin_response for obs in good_quality_observations) / len(good_quality_observations),
+            "average_activity_level": sum(activity_levels) / len(activity_levels),
+            "average_temperature": sum(temperatures) / len(temperatures)
         }
+
+    def __str__(self) -> str:
+        return f"Session with {len(self.observations)} observations" 
