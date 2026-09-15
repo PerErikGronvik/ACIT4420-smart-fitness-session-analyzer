@@ -54,3 +54,9 @@ assert summary["average_temperature"] == 36.6
 
 for name, value in summary.items():
     print(f"{name}: {value}")
+
+# %% [markdown]
+# # Test of 5 required scenarios
+
+# %%
+from sample_data import get_resting_session_data
